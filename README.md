@@ -2,24 +2,24 @@
 
 ## Bridge Package
 
-The directory [`kinemic_ros_bridge`](./kinemic_ros_bridge) contains a ROS2 Python Package that forwards Events from a 
+The directory [`kinemic_ros_bridge`](./kinemic_ros_bridge) contains a ROS2 Python Package that forwards Events from a
 [Kinemic Gesture Service](https://repo.kinemic.com/#browse/browse:kinemic-service-releases) instance to a ROS Topic.
 
-Details about Service instance to use are currently defined in code can be configured in the 
+Details about Service instance to use are currently defined in code can be configured in the
 [node script `kinemic_ros_node.py`](./kinemic_ros_bridge/kinemic_ros_bridge/kinemic_ros_node.py)  
-By default the Service instance is expected to run on the Docker Host executing the 
+By default the Service instance is expected to run on the Docker Host executing the
 [Dockerized Setup](#dockerized-setup) below.
 
-Details about the forwarded Events can be found on the 
+Details about the forwarded Events can be found on the
 [Kinemic Developer Portal](https://developer.kinemic.com/docs/jsonrpc/latest/)
 
 ## Dependencies
 
-The Package uses the 
+The Package uses the
 [Kinemic Gesture Service Python Package](https://repo.kinemic.com/#browse/browse:pypi:kserviceconnect) to communicate
 with the Service instance.
 
-You can install this package, e.g. with `pip`, using our PyPi Repository 
+You can install this package, e.g. with `pip`, using our PyPi Repository
 [https://repo.kinemic.com/repository/pypi/simple/]('https://repo.kinemic.com/repository/pypi/simple/')
 
 ```bash
@@ -28,7 +28,7 @@ python3 -m pip install -U kserviceconnect --extra-index-url 'https://repo.kinemi
 
 ## Connection Handling
 
-The Bridge only forwards Events, and is currently not intended to handle requests or establish connections to 
+The Bridge only forwards Events, and is currently not intended to handle requests or establish connections to
 Kinemic Bands.
 
 You can use the [Kinemic Remote](https://repo.kinemic.com/#browse/browse:kinemic-remote-releases) to connect to the

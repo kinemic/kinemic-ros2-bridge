@@ -13,8 +13,8 @@ repositories: \n\
     type: git \n\
     url: https://github.com/ros2/demos.git \n\
     version: ${ROS_DISTRO} \n\
-" > ../overlay.repos
-RUN vcs import ./ < ../overlay.repos
+" > ../overlay.repos && \
+    vcs import ./ < ../overlay.repos
 COPY kinemic_ros_bridge/ kinemic_ros_bridge
 
 # copy manifests for caching
@@ -32,13 +32,13 @@ FROM $FROM_IMAGE AS builder
 ARG OVERLAY_WS
 WORKDIR $OVERLAY_WS
 COPY --from=cacher /tmp/$OVERLAY_WS/src ./src
-RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
+RUN . "/opt/ros/$ROS_DISTRO/setup.sh" && \
     apt-get update && rosdep install -y \
       --from-paths \
         src/ros2/demos/demo_nodes_py \
         src/kinemic_ros_bridge \
       --ignore-src \
-    && apt-get install -y python3-pip \
+    && apt-get install --no-install-recommends -y python3-pip \
     && rm -rf /var/lib/apt/lists/*
 # install Kinemic Gesture Service Python package
 RUN python3 -m pip --no-cache-dir install -U kserviceconnect \
@@ -47,7 +47,7 @@ RUN python3 -m pip --no-cache-dir install -U kserviceconnect \
 # build overlay source
 COPY --from=cacher $OVERLAY_WS/src ./src
 ARG OVERLAY_MIXINS="release"
-RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
+RUN . "/opt/ros/$ROS_DISTRO/setup.sh" && \
     colcon build \
       --packages-select \
         demo_nodes_py \

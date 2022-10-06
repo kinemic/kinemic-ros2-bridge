@@ -48,7 +48,7 @@ import kserviceconnect
 import rclpy
 from kserviceconnect.eventlistener import ZMQEventListener
 from kserviceconnect.library import EnginePorts
-from kserviceconnect.library.manager import BundledServiceProvider, BundledOptions
+from kserviceconnect.library.manager import BundledOptions, BundledServiceProvider
 from kserviceconnect.provider import HostInformationProvider
 from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
@@ -84,8 +84,8 @@ class KinemicEventPublisher(Node):
             msg.data = event.json()
             self.publisher_.publish(msg)
 
-    def __create_task(self, f):
-        self.__task = self.__loop.create_task(f)
+    def __create_task(self, coroutine):
+        self.__task = self.__loop.create_task(coroutine)
 
     def __del__(self):
         if self.__task is not None:
