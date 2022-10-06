@@ -31,8 +31,10 @@ python3 -m pip install -U kserviceconnect --extra-index-url 'https://repo.kinemi
 The Bridge only forwards Events, and is currently not intended to handle requests or establish connections to
 Kinemic Bands.
 
-You can use the [Kinemic Remote](https://repo.kinemic.com/#browse/browse:kinemic-remote-releases) to connect to the
+You can use the [Kinemic Remote](https://kinemic.com/en/kinemic-band/kinemic-remote-2/) to connect to the
 same Service instance the Bridge communicates with and then use it to connect Bands.
+
+You can download a release of the Kinemic Remote [here](https://repo.kinemic.com/#browse/browse:kinemic-remote-releases)
 
 ## Dockerized Setup
 
